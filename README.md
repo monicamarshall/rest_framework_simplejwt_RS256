@@ -14,10 +14,9 @@ https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
 https://www.django-rest-framework.org/api-guide/authentication/
 
 This library is actively maintained and is a spin-off of the unmaintained framework djangorestframework-jwt by jpadilla.
+Prerequisite:  A private/public key must be created for enabling the rest_framework_simplejwt 4.6.0 AUTH library to manage JWT tokens with the RS256 algorithm.
 
 To run this project:
-
-Prerequisite:  A private/public key must be created for enabling the rest_framework_simplejwt 4.6.0 AUTH library to manage JWT tokens with the RS256 algorithm.
 
 1. create a virtual environment and activate it
 2. Install the following libraries with the command pip install <library-name>:
