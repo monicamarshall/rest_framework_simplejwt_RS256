@@ -31,6 +31,8 @@ To run this project:
 
   cryptography==3.4.7   (create private/public keys)
   
+  psycopg2==2.8.6 (connect to postgres DB)
+  
 3. Check out the project
 4. Create a database with name <databasename>.  Postgres configuration is in settings.py
 
