@@ -36,7 +36,7 @@ To run this project:
 3. Check out the project
 4. Create a database with name <databasename>.  Postgres configuration is in settings.py
 
-5. In the environment where the cryptography library is installed run the command to create a private and public key. Specify the location of the public/private key which must match the location in settings.py ( JWT_PUBLIC_KEY_PATH = './publicKey.pem' JWT_PRIVATE_KEY_PATH = './privateKey.pem')
+5. In the environment where the cryptography library is installed run the command to create a private and public key. Specify the location of the public/private key in settings.py ( JWT_PUBLIC_KEY_PATH = './publicKey.pem' JWT_PRIVATE_KEY_PATH = './privateKey.pem')
 
   ssh-keygen -t rsa -b 4096
 
