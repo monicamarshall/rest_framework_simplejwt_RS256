@@ -100,6 +100,7 @@ $ curl -X POST -H "Content-Type: application/json" -d '{"token":"eyJ0eXAiOiJKV1Q
 Test an invalid/expired token:
 
 $ curl -X POST -H "Content-Type: application/json" -d '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE5NzEyMjY4LCJqdGkiOiIyODlkMjkwY2RiNjY0MTJjYTUzNzVjMDcwMGY0ODUwMCIsInVzZXJfaWQiOjEsInVzZXJuYW1lIjoibW9uaWNhIiwic3ViIjoiTXBkYlVzZXIiLCJhdWQiOiJNcGRiVXNlcnMiLCJpc3MiOiJNcGRiUmVzdEFQSSJ9.ppPOSPGZf4tDkijRfBjuMutpu0yhtK2Z_ZdOyTqsbU1q5tRUZsaciysmFUEKKwjvg4LQaYPF7BPyKeqR6-_U3"}' http://localhost:8088/api/token/verify/
+
 {"detail":"Token is invalid or expired","code":"token_not_valid"}
 
 Prerequisite for the obtaining a token:
@@ -110,7 +111,6 @@ to create a user first.
 The project also offers 2 services:
 1. The hello service ( returns the message Hello )
 2. The students service ( view/update/delete/modify students).
-
 
 Current unresolved capabilities:
 The framework will authorize access to the hello and student service in curl commands if the RS256 token is set in the Authorization Bearer header of the request and will return an error when the curl requests for a protected resource are submitted without a Bearer Token.
@@ -131,7 +131,6 @@ With curl, the http requests with the token in the Authorization header are suss
 
 In order to access protected api urls you must include the Authorization: Bearer <your_token> header.  The default prefix can be overridden in settings.py with JWT_AUTH_HEADER_PREFIX = <YOUR_AUTH_HEADER>.
 
-
 Test protection of the hello resource with Bearer JWT Token:
 
 $ curl -H "Content-Type: application/json" -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE4OTYxNzM0LCJqdGkiOiIyZTMxNzc1NzNjOWM0MzgxOTYwMGNlNmIxNjNjNzUwNSIsInVzZXJfaWQiOjUsImF1ZCI6Ik1wZGJVc2VycyIsImlzcyI6Ik1wZGJSZXN0QVBJIn0.nwKjo4jGWbegZmz0dGoUIieqxeoryGdJlmN9gd33__Co1iIho6H2YbtAXp5eLyE-K7ZdhUnnVbyCNtxka4wQpQ" -X GET  http://localhost:8088/hello/
@@ -143,7 +142,6 @@ Test protection of the hello resource WITHOUT Bearer JWT Token:
 $ curl -X GET http://localhost:8088/hello/
 
 {"detail":"Authentication credentials were not provided."}
-
 
 Test protection of the students list resource with Bearer JWT Token:
 
@@ -162,6 +160,7 @@ Test protection of a student (pk required) resource with Bearer JWT Token:
 
 $ curl -H "Content-Type: application/json" -H "Authorization: Bearer 
 eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE4OTYxNzM0LCJqdGkiOiIyZTMxNzc1NzNjOWM0MzgxOTYwMGNlNmIxNjNjNzUwNSIsInVzZXJfaWQiOjUsImF1ZCI6Ik1wZGJVc2VycyIsImlzcyI6Ik1wZGJSZXN0QVBJIn0.nwKjo4jGWbegZmz0dGoUIieqxeoryGdJlmN9gd33__Co1iIho6H2YbtAXp5eLyE-K7ZdhUnnVbyCNtxka4wQpQ" -X GET  http://localhost:8088/api/students/1
+
 [{"pk":1,"first_name":"Alberto","last_name":"Dinardi","email":"dinardi@gmail.com","classroom":"Data Structures Java"},{"pk":2,"first_name":"Gemma","last_name":"Crane","emai
 l":"voci@gmail.com","classroom":"Advertising"}]
 
