@@ -45,12 +45,53 @@ The rest_framework_simplejwt_RS256 demo project shows 3 basic AUTH RS256 jwt cap
 
 2. Refresh access token ( using the refresh token obtained in step 1 ) The url for a new access token by posting the refresh token (server running at port 8088 ): http://localhost:8088/api/token/refresh/
 
-3. Verify token ( using the access token from step 1 or step 2 ). The url for verifying a token (server running at port 8088 ): http://localhost:8088/api/token/verify/
+3. Verify token ( using the access token or the refresh token from step 1 or step 2 ). The url for verifying a token (server running at port 8088 ): http://localhost:8088/api/token/verify/
+   If the token is valid or not expired, an empty response is returned.  Otherwise, an error message is returned.
 
 You can easily test if the endpoint returns a response by submitting the following commands in your terminal.  Remember that you must have a user created with the username admin and password password123 for the request to work.  
 Create an account with username and password by issuing the command:  
 python manage.py createsuperuser in the project directory where manage.py is located.  
 Follow the prompts and add a superuser with name admin and password password123.
+
+Test Obtain Token:
+$ curl -X POST -d "username=admin&password=password123" http://localhost:8088/api/token/
+
+{"refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxOTcxMjM3MiwianRpIjoiMGYyMTUwNmM1ZWE4NGE3M2EyZDMwYzRhMzEwNDQ1ODEiL
+CJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1vbmljYSIsInN1YiI6Ik1wZGJVc2VyIiwiYXVkIjoiTXBkYlVzZXJzIiwiaXNzIjoiTXBkYlJlc3RBUEkifQ.FGFY4SjvjqU852IBHAhCpqjww21dvcML8AqgavXY
+kRYYShsTH9Egp3vYwHR0DsmQr9chbDuLDyRDxkO_Q9HxoQ","access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE5NzExNzcyLCJqdGkiOiI
+zODYxODNkMjNhNDY0MTYxOWUwNjZmMmUwMjdkZTAwMyIsInVzZXJfaWQiOjEsInVzZXJuYW1lIjoibW9uaWNhIiwic3ViIjoiTXBkYlVzZXIiLCJhdWQiOiJNcGRiVXNlcnMiLCJpc3MiOiJNcGRiUmVzdEFQS
+SJ9.kY5kRcT-FKg6z4hfS8Yt7RoNpBsWhptre_f5MMLBxGcD51dPAMs88d2TXi63D2F5LDTaVoQiNvr687rBDxHiiQ"}
+
+Test Obtain Token:
+$ curl -X POST -H "Content-Type: application/json" -d '{"username":"admin","password":"password123"}' http://localhost:8088/api/token/
+
+{"refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxOTcxMjQ5MCwianRpIjoiY2QzMjAzYTg2MzA5NGRhMmE1NDc2ZmEzYzRmYjY3MzQiL
+CJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1vbmljYSIsInN1YiI6Ik1wZGJVc2VyIiwiYXVkIjoiTXBkYlVzZXJzIiwiaXNzIjoiTXBkYlJlc3RBUEkifQ.XL6pk-_eG72xY-rmn8c-zE1d6KI9qkgjv7bvW2q6
+jBRjKe4qUcIDhWEssPchYYa79oKAHsPofGPFfxS7FSUNCA","access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE5NzExODkwLCJqdGkiOiJ
+lNzA3MGM3ZjBkZjM0ZTg1OGRlZmRmY2RiOTQxZDBkMCIsInVzZXJfaWQiOjEsInVzZXJuYW1lIjoibW9uaWNhIiwic3ViIjoiTXBkYlVzZXIiLCJhdWQiOiJNcGRiVXNlcnMiLCJpc3MiOiJNcGRiUmVzdEFQS
+SJ9.DvEd2CnEp6cHR2Oj63jMf66WZ572jkD41qUWY4Iqb4ZrYdSu492TwwxDpV1Lf2l6-XHOpnAiQSAwxkx1f0NpNA"}
+
+Test Token Refresh by posting the refresh token from Otain Token:
+$ curl -X POST -H "Content-Type: application/json" -d '{"refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxOTcxMjQ5MCwianRpIjoiY2QzMjAzYTg2MzA5NGRhMmE1NDc2ZmEzYzRmYjY3MzQiLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1vbmljYSIsInN1YiI6Ik1wZGJVc2VyIiwiYXVkIjoiTXBkYlVzZXJzIiwiaXNzIjoiTXBkYlJlc3RBUEkifQ.XL6pk-_eG72xY-rmn8c-zE1d6KI9qkgjv7bvW2q6jBRjKe4qUcIDhWEssPchYYa79oKAHsPofGPFfxS7FSUNCA"}' http://localhost:8088/api/token/refresh/
+
+{"access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE5NzEyMjY4LCJqdGkiOiIyODlkMjkwY2RiNjY0MTJjYTUzNzVjMDcwMGY0ODUwMCIsIn
+VzZXJfaWQiOjEsInVzZXJuYW1lIjoibW9uaWNhIiwic3ViIjoiTXBkYlVzZXIiLCJhdWQiOiJNcGRiVXNlcnMiLCJpc3MiOiJNcGRiUmVzdEFQSSJ9.ppPOSPGZf4tDkijRfBjuMutpu0yhtK2Z_ZdOyTqsbU1
+q5tRUZsaciysmFUEKKwjvg4LQaYPF7BPyKeqR6-_U3w","refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxOTcxMjg2OCwianRpIjoiN
+DVkMDJjZmU3YzAzNGEzNmI0N2Y0ODhlOGQwZDlmMDYiLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1vbmljYSIsInN1YiI6Ik1wZGJVc2VyIiwiYXVkIjoiTXBkYlVzZXJzIiwiaXNzIjoiTXBkYlJlc3RBUEk
+ifQ.v0_ZHtRGBeaLW1IDcxcJeTDK1YT0Ne4QPgnrYQwnKkj_diDc8LB9SPwmJeN4kBvmH57miHR0QnW26ScA9us74g"}
+
+Test access token verify:
+$ curl -X POST -H "Content-Type: application/json" -d '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxOTcxMjQ5MCwianRpIjoiY2QzMjAzYTg2MzA5NGRhMmE1NDc2ZmEzYzRmYjY3MzQiLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1vbmljYSIsInN1YiI6Ik1wZGJVc2VyIiwiYXVkIjoiTXBkYlVzZXJzIiwiaXNzIjoiTXBkYlJlc3RBUEkifQ.XL6pk-_eG72xY-rmn8c-zE1d6KI9qkgjv7bvW2q6jBRjKe4qUcIDhWEssPchYYa79oKAHsPofGPFfxS7FSUNCA"}' http://localhost:8088/api/token/verify/
+{}
+
+Test refresh token verify:
+$ curl -X POST -H "Content-Type: application/json" -d '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE5NzEyMjY4LCJqdGkiOiIyODlkMjkwY2RiNjY0MTJjYTUzNzVjMDcwMGY0ODUwMCIsInVzZXJfaWQiOjEsInVzZXJuYW1lIjoibW9uaWNhIiwic3ViIjoiTXBkYlVzZXIiLCJhdWQiOiJNcGRiVXNlcnMiLCJpc3MiOiJNcGRiUmVzdEFQSSJ9.ppPOSPGZf4tDkijRfBjuMutpu0yhtK2Z_ZdOyTqsbU1q5tRUZsaciysmFUEKKwjvg4LQaYPF7BPyKeqR6-_U3w"}' http://localhost:8088/api/token/verify/
+{}
+
+Test an invalid/expired token:
+$ curl -X POST -H "Content-Type: application/json" -d '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE5NzEyMjY4LCJqdGkiOiIyODlkMjkwY2RiNjY0MTJjYTUzNzVjMDcwMGY0ODUwMCIsInVzZXJfaWQiOjEsInVzZXJuYW1lIjoibW9uaWNhIiwic3ViIjoiTXBkYlVzZXIiLCJhdWQiOiJNcGRiVXNlcnMiLCJpc3MiOiJNcGRiUmVzdEFQSSJ9.ppPOSPGZf4tDkijRfBjuMutpu0yhtK2Z_ZdOyTqsbU1q5tRUZsaciysmFUEKKwjvg4LQaYPF7BPyKeqR6-_U3"}' http://localhost:8088/api/token/verify/
+{"detail":"Token is invalid or expired","code":"token_not_valid"}
+
 
 $ curl -X POST -d "username=admin&password=password123" http://localhost:8088/api/token/
 Alternatively, you can use all the content types supported by the Django REST framework to obtain the auth token. For example:
