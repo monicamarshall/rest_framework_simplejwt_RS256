@@ -42,7 +42,7 @@ In the environment where the cryptography library is installed run the command t
 3. Check out the project
 4. Create a database with name <databasename>.  Postgres configuration is in settings.py
 
-5. cd to the directory that contains manage.py
+5. cd to the directory that contains manage.py and issue the commands:
 
   python manage.py makemigrations
   
