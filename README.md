@@ -50,7 +50,7 @@ To run this project:
 
   python manage.py runserver 8088
 
-The rest_framework_simplejwt_RS256 demo project shows 3 basic AUTH RS256 jwt capabilities:
+# Test the rest_framework_simplejwt_RS256 AUTH RS256 JWT restful endpoints:
 
 1. Obtain an access token.( with valid username and password ).  This url will return an access token and a refresh token to refresh the access token when it expires.  Remember that a new access token can be generated using the refresh token if the refresh token has not expired.  The lifetime of a refresh token is typically longer than the lifetime of an access token.  If the refresh token is expired a new access token can be obtained by submitting login credentials on the request token url.  The url for obtaining an access/refresh token (server running at port 8088 ): http://localhost:8088/api/token/
 
@@ -133,7 +133,7 @@ The framework DOES NOT automatically authorize access to the hello and student s
 2. http://localhost:8088/students/
 3. http://localhost:8088/students/1
 
-Test protection of the hello resource with Bearer JWT Token:
+# Test protection of api resources with Bearer JWT Token:
 
 In order to access protected resource via restufl api urls you must include the Authorization: Bearer <your_token> header.  The default prefix can be overridden in settings.py with JWT_AUTH_HEADER_PREFIX = <YOUR_AUTH_HEADER>.
 
