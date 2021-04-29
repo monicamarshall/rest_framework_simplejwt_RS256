@@ -121,26 +121,21 @@ The project also offers 2 services:
 1. The hello service ( returns the message Hello )
 2. The students service ( view/update/delete/modify students).
 
-Current unresolved capabilities:
+#To be noted:
 The framework will authorize access to the hello and student service in curl commands if the RS256 token is set in the Authorization Bearer header of the request and will return an error when the curl requests for a protected resource are submitted without a Bearer Token.
 The error message returned is:
 
 {"detail":"Authentication credentials were not provided."}
 
-The framework DOES NOT automatically authorize access to the hello and student services when requests for the hello and students resources are submitted via browser.  
-The framework WILL NOT automatically authorize users when accessing the endpoints via URL in a web page:
+The framework DOES NOT automatically authorize access to the hello and student services when requests for the hello and students resources are submitted via browser. When these endpoints are accessed via browser, an error message is returned:  "detail": "Authentication credentials were not provided."
 
 1. http://localhost:8088/hello/
 2. http://localhost:8088/students/
 3. http://localhost:8088/students/1
 
-When these endpoints are accessed via browser, an error message is returned, even after succesful authentication/authorization.  "detail": "Authentication credentials were not provided."
-
-With curl, the http requests with the token in the Authorization header are susseccuful.  
-
-In order to access protected api urls you must include the Authorization: Bearer <your_token> header.  The default prefix can be overridden in settings.py with JWT_AUTH_HEADER_PREFIX = <YOUR_AUTH_HEADER>.
-
 Test protection of the hello resource with Bearer JWT Token:
+
+In order to access protected resource via restufl api urls you must include the Authorization: Bearer <your_token> header.  The default prefix can be overridden in settings.py with JWT_AUTH_HEADER_PREFIX = <YOUR_AUTH_HEADER>.
 
 $ curl -H "Content-Type: application/json" -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE4OTYxNzM0LCJqdGkiOiIyZTMxNzc1NzNjOWM0MzgxOTYwMGNlNmIxNjNjNzUwNSIsInVzZXJfaWQiOjUsImF1ZCI6Ik1wZGJVc2VycyIsImlzcyI6Ik1wZGJSZXN0QVBJIn0.nwKjo4jGWbegZmz0dGoUIieqxeoryGdJlmN9gd33__Co1iIho6H2YbtAXp5eLyE-K7ZdhUnnVbyCNtxka4wQpQ" -X GET  http://localhost:8088/hello/
 
