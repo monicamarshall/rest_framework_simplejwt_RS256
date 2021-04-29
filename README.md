@@ -1,26 +1,27 @@
 # rest_framework_simplejwt_RS256
 demo project that demonstrates protecting restful endpoints with the rest_framework_simplejwt 4.6.0 AUTH library
 
-This is a demo project of the django-rest-framework-jwt capabilities by JPadilla. 
+Documentation for rest_framework_simplejwt is available at:
 
-Documentation for django-rest-framework-jwt is available at:
+https://pypi.org/project/djangorestframework-simplejwt/
+https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#
 
-https://github.com/jpadilla/django-rest-framework-jwt
-https://github.com/jpadilla/django-rest-framework-jwt/issues/484
-https://jpadilla.github.io/django-rest-framework-jwt/
-https://www.techiediaries.com/django-rest-framework-jwt-tutorial/
-https://medium.com/@msum_t/jwt-auth-implemention-with-django-rest-framework-6e9d4b603c1c
+Example projects:
 
-This library is unmaintained and is used by the newer framework djangorestframework-simplejwt at:
+https://simpleisbetterthancomplex.com/tutorial/2018/12/19/how-to-use-jwt-authentication-with-django-rest-framework.html
+https://medium.com/django-rest/django-rest-framework-jwt-authentication-94bee36f2af8
+https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
+https://www.django-rest-framework.org/api-guide/authentication/
 
-https://github.com/jazzband/django-rest-framework-simplejwt
-The documentation for the maintained version is at:
-https://django-rest-framework-simplejwt.readthedocs.io/en/latest/
+This library is maintained and is a spin-off of the unmaintained framework djangorestframework-jwt by jpadilla.
 
-The demo projects shows 3 basic RS256 jwt capabilities:
-1. Obtain an access token.( with valid username and password ).  This url will return an access token and a refresh token to refresh the access token when it expires.  Remember that a new access token can be generated using the refresh token unless the refresh token has not expired.  The lifetime of a refresh token is typically longer than the lifetime of an access token.  If the refresh token is expired a new access token must be issued by submitting login credentials.  The url for obtaining an access/refresh token (server running at port 8088 ): http://localhost:8088/users/api-token-auth/
-2. Refresh access token ( using the refresh token obtained in step 1 ) The url for obtaining a new access token posting the refresh token (server running at port 8088 ): http://localhost:8088/users/api-token-refresh/
-3. Verify token ( using the access token from step 1 or step 2 ) The url for obtaining a token (server running at port 8088 ): http://localhost:8088/users/api-token-verify/
+The rest_framework_simplejwt_RS256 demo project shows 3 basic AUTH RS256 jwt capabilities:
+
+1. Obtain an access token.( with valid username and password ).  This url will return an access token and a refresh token to refresh the access token when it expires.  Remember that a new access token can be generated using the refresh token unless the refresh token has not expired.  The lifetime of a refresh token is typically longer than the lifetime of an access token.  If the refresh token is expired a new access token must be issued by submitting login credentials.  The url for obtaining an access/refresh token (server running at port 8088 ): http://localhost:8088/api/token/
+
+2. Refresh access token ( using the refresh token obtained in step 1 ) The url for a new access token by posting the refresh token (server running at port 8088 ): http://localhost:8088/api/token/refresh/
+
+3. Verify token ( using the access token from step 1 or step 2 ) The url for verifying a token (server running at port 8088 ): http://localhost:8088/api/token/verify/
 
 You can easily test if the endpoint returns a response by submitting the following commands in your terminal.  Remember that you must have a user created with the username admin and password password123.  
 This is done by issuing the command:  python manage.py createsuperuser in the project directory where manage.py is located.  Follow the prompts and add a superuser with name admin and password password123.
