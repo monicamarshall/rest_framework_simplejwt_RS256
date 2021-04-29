@@ -22,7 +22,7 @@ In the environment where the cryptography library is installed run the command t
 
   ssh-keygen -t rsa -b 4096
 
-To run this project:
+# To run this project:
 
 1. create a virtual environment and activate it
 2. Install the following libraries with the command pip install <library-name>:
