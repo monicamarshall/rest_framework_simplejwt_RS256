@@ -13,35 +13,41 @@ https://medium.com/django-rest/django-rest-framework-jwt-authentication-94bee36f
 https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
 https://www.django-rest-framework.org/api-guide/authentication/
 
-This library is maintained and is a spin-off of the unmaintained framework djangorestframework-jwt by jpadilla.
+This library is actively maintained and is a spin-off of the unmaintained framework djangorestframework-jwt by jpadilla.
 
 To run this project:
+
+Prerequisite:  A private/public key must be created for enabling the rest_framework_simplejwt 4.6.0 AUTH library to manage JWT tokens with the RS256 algorithm.
 
 1. create a virtual environment and activate it
 2. Install the following libraries with the command pip install <library-name>:
 
-Django==3.2
+  Django==3.2
   
-django-filter==2.4.0
+  django-filter==2.4.0
 
-djangorestframework==3.12.4
+  djangorestframework==3.12.4
 
-djangorestframework-simplejwt==4.6.0   (JWT token create/refresh/verify)
+  djangorestframework-simplejwt==4.6.0   (JWT token create/refresh/verify)
 
-cryptography==3.4.7   (create private/public keys)
+  cryptography==3.4.7   (create private/public keys)
   
 3. Check out the project
 4. Create a database with name <databasename>.  Postgres configuration is in settings.py
 5. cd to the directory that contains manage.py
-6. run the following commands:
+6. In the environment where the cryptography library is installed run the command to create a private and public key. Specify the location of the public/private key which must match the location in settings.py ( JWT_PUBLIC_KEY_PATH = './publicKey.pem' JWT_PRIVATE_KEY_PATH = './privateKey.pem')
 
-python manage.py makemigrations
+  ssh-keygen -t rsa -b 4096
+
+7. run the following commands:
+
+  python manage.py makemigrations
   
-python manage.py migrate
+  python manage.py migrate
 
-python manage.py createsuperuser (enter the username & password to use when requesting a token)
+  python manage.py createsuperuser (enter the username & password to use when requesting a token)
 
-python manage.py runserver 8088
+  python manage.py runserver 8088
 
 The rest_framework_simplejwt_RS256 demo project shows 3 basic AUTH RS256 jwt capabilities:
 
