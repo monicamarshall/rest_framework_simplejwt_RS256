@@ -121,7 +121,7 @@ The project also offers 2 services:
 1. The hello service ( returns the message Hello )
 2. The students service ( view/update/delete/modify students).
 
-#To be noted:
+# To be noted:
 The framework will authorize access to the hello and student service in curl commands if the RS256 token is set in the Authorization Bearer header of the request and will return an error when the curl requests for a protected resource are submitted without a Bearer Token.
 The error message returned is:
 
