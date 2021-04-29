@@ -50,7 +50,7 @@ To run this project:
 
   python manage.py runserver 8088
 
-# Test the rest_framework_simplejwt_RS256 AUTH RS256 JWT restful endpoints:
+# Test AUTH with rest_framework_simplejwt RS256 restful endpoints:
 
 1. Obtain an access token.( with valid username and password ).  This url will return an access token and a refresh token to refresh the access token when it expires.  Remember that a new access token can be generated using the refresh token if the refresh token has not expired.  The lifetime of a refresh token is typically longer than the lifetime of an access token.  If the refresh token is expired a new access token can be obtained by submitting login credentials on the request token url.  The url for obtaining an access/refresh token (server running at port 8088 ): http://localhost:8088/api/token/
 
