@@ -16,7 +16,7 @@ https://www.django-rest-framework.org/api-guide/authentication/
 This library is actively maintained and is a spin-off of the unmaintained framework djangorestframework-jwt by jpadilla.
 # Prerequisite private/public key:  
 
-A private/public key must be created for enabling the rest_framework_simplejwt 4.6.0 AUTH library to manage JWT tokens with the RS256 algorithm.
+A private/public key must be created for enabling the rest_framework_simplejwt 4.6.0 AUTH library to create/refresh JWT tokens with the RS256 algorithm.
 
 In the environment where the cryptography library is installed run the command to create a private and public key. Specify the location of the public/private key in settings.py ( JWT_PUBLIC_KEY_PATH = './publicKey.pem' JWT_PRIVATE_KEY_PATH = './privateKey.pem')
 
