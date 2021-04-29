@@ -18,7 +18,7 @@ This library is maintained and is a spin-off of the unmaintained framework djang
 To run this project:
 
 1. create a virtual environment and activate it
-2. Install the following libraries:
+2. Install the following libraries with the command pip install <library-name>:
 Django==3.2
 django-filter==2.4.0
 djangorestframework==3.12.4
@@ -31,7 +31,6 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser (enter the username & password to use when requesting a token)
 python manage.py runserver 8088
-
 
 The rest_framework_simplejwt_RS256 demo project shows 3 basic AUTH RS256 jwt capabilities:
 
