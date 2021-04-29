@@ -19,6 +19,7 @@ To run this project:
 
 1. create a virtual environment and activate it
 2. Install the following libraries with the command pip install <library-name>:
+
 Django==3.2
   
 django-filter==2.4.0
@@ -31,6 +32,7 @@ djangorestframework-simplejwt==4.6.0
 4. Create a database with name <databasename>.  Postgres configuration is in settings.py
 5. cd to the directory that contains manage.py
 6. run the following commands:
+
 python manage.py makemigrations
   
 python manage.py migrate
