@@ -26,7 +26,9 @@ django-filter==2.4.0
 
 djangorestframework==3.12.4
 
-djangorestframework-simplejwt==4.6.0
+djangorestframework-simplejwt==4.6.0   (JWT token create/refresh/verify)
+
+cryptography==3.4.7   (create private/public keys)
   
 3. Check out the project
 4. Create a database with name <databasename>.  Postgres configuration is in settings.py
