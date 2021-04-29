@@ -15,21 +15,41 @@ https://www.django-rest-framework.org/api-guide/authentication/
 
 This library is maintained and is a spin-off of the unmaintained framework djangorestframework-jwt by jpadilla.
 
+To run this project:
+
+1. create a virtual environment and activate it
+2. Install the following libraries:
+Django==3.2
+django-filter==2.4.0
+djangorestframework==3.12.4
+djangorestframework-simplejwt==4.6.0
+3. Check out the project
+4. Create a database with name <databasename>.  Postgres configuration is in settings.py
+5. cd to the directory that contains manage.py
+6. run the following commands:
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser (enter the username & password to use when requesting a token)
+python manage.py runserver 8088
+
+
 The rest_framework_simplejwt_RS256 demo project shows 3 basic AUTH RS256 jwt capabilities:
 
-1. Obtain an access token.( with valid username and password ).  This url will return an access token and a refresh token to refresh the access token when it expires.  Remember that a new access token can be generated using the refresh token unless the refresh token has not expired.  The lifetime of a refresh token is typically longer than the lifetime of an access token.  If the refresh token is expired a new access token must be issued by submitting login credentials.  The url for obtaining an access/refresh token (server running at port 8088 ): http://localhost:8088/api/token/
+1. Obtain an access token.( with valid username and password ).  This url will return an access token and a refresh token to refresh the access token when it expires.  Remember that a new access token can be generated using the refresh token if the refresh token has not expired.  The lifetime of a refresh token is typically longer than the lifetime of an access token.  If the refresh token is expired a new access token can be obtained by submitting login credentials on the request token url.  The url for obtaining an access/refresh token (server running at port 8088 ): http://localhost:8088/api/token/
 
 2. Refresh access token ( using the refresh token obtained in step 1 ) The url for a new access token by posting the refresh token (server running at port 8088 ): http://localhost:8088/api/token/refresh/
 
-3. Verify token ( using the access token from step 1 or step 2 ) The url for verifying a token (server running at port 8088 ): http://localhost:8088/api/token/verify/
+3. Verify token ( using the access token from step 1 or step 2 ). The url for verifying a token (server running at port 8088 ): http://localhost:8088/api/token/verify/
 
-You can easily test if the endpoint returns a response by submitting the following commands in your terminal.  Remember that you must have a user created with the username admin and password password123.  
-This is done by issuing the command:  python manage.py createsuperuser in the project directory where manage.py is located.  Follow the prompts and add a superuser with name admin and password password123.
+You can easily test if the endpoint returns a response by submitting the following commands in your terminal.  Remember that you must have a user created with the username admin and password password123 for the request to work.  
+Create an account with username and password by issuing the command:  
+python manage.py createsuperuser in the project directory where manage.py is located.  
+Follow the prompts and add a superuser with name admin and password password123.
 
-$ curl -X POST -d "username=admin&password=password123" http://localhost:8088/users/api-token-auth/
+$ curl -X POST -d "username=admin&password=password123" http://localhost:8088/api/token/
 Alternatively, you can use all the content types supported by the Django REST framework to obtain the auth token. For example:
 
-$ curl -X POST -H "Content-Type: application/json" -d '{"username":"admin","password":"password123"}' http://localhost:8088/users/api-token-auth/
+$ curl -X POST -H "Content-Type: application/json" -d '{"username":"admin","password":"password123"}' http://localhost:8088/api/token/
 
 Pass in an existing token to the refresh endpoint as follows: {"token": EXISTING_TOKEN}. Note that only non-expired tokens will work. The JSON response looks the same as the normal obtain token endpoint {"token": NEW_TOKEN}.
 
