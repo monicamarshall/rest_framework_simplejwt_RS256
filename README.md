@@ -4,13 +4,17 @@ demo project that demonstrates protecting restful endpoints with the rest_framew
 Documentation for rest_framework_simplejwt is available at:
 
 https://pypi.org/project/djangorestframework-simplejwt/
+
 https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#
 
 Example projects:
 
 https://simpleisbetterthancomplex.com/tutorial/2018/12/19/how-to-use-jwt-authentication-with-django-rest-framework.html
+
 https://medium.com/django-rest/django-rest-framework-jwt-authentication-94bee36f2af8
+
 https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
+
 https://www.django-rest-framework.org/api-guide/authentication/
 
 This library is actively maintained and is a spin-off of the unmaintained framework djangorestframework-jwt by jpadilla.
